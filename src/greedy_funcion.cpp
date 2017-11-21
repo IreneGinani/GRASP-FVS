@@ -12,10 +12,12 @@ struct vertice {
 }
 
 
-void greedy_funciont(vector<vector<vertice>> grafo, vector<vertice> lista_ordenada, vector<vertice> lista_elite){
+void greedy_funcion(vector<vector<vertice>> grafo, vector<vertice> lista_ordenada, vector<vertice> &lista_elite){
 
+	OrdenaVertices(grafo,lista_ordenada);
 	vertice vertice_min = lista_ordenada[lista_ordenada.size()-1];
 	vertice vertice_max = lista_ordenada[0];
+	alfa = 0.5 //pode variar de 0 à 1
 
 	for (int i = 0; i < grafo.size(); ++i)
 	{
@@ -31,9 +33,7 @@ void greedy_funciont(vector<vector<vertice>> grafo, vector<vertice> lista_ordena
 
 }
 
-void OrdenaVertices(vector<vector<vertice>> grafo){
-
-	vector<vertice> lista_ordenada;
+void OrdenaVertices(vector<vector<vertice>> grafo,vector<vertice> &lista_ordenada){
 
 	vertice valor;
 
@@ -42,7 +42,7 @@ void OrdenaVertices(vector<vector<vertice>> grafo){
 		for (int j = 0; j < grafo[0].size(); ++j)
 		{
 
-			if ((grafo[i][i].graus > grafo[i][j].graus) && (!busca_vertice(valor))){
+			if ((grafo[i][i].graus > grafo[i][j].graus) && (!busca_vertice(valor,lista_ordenada))){
 
 				valor = grafo[i][i];
 
@@ -53,7 +53,7 @@ void OrdenaVertices(vector<vector<vertice>> grafo){
 			}
 		}
 
-		lista_ordenada.push_back(valor, lista_ordenada);
+		lista_ordenada.push_back(valor);
 	}
 
 
