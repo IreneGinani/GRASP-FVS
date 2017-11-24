@@ -23,7 +23,7 @@ void greedy_funcion(vector<vector<vertice>> grafo, vector<vertice> lista_ordenad
 	{
 		for (int j = 0; j < grafo[0].size(); ++j)
 		{
-			if ((grafo[i][j].graus >= (vertice_min + alfa * (vertice_max - vertice_min))) && (!busca_vertice(valor,lista_elite))){
+			if ((grafo[i][j] >= (vertice_min + alfa * (vertice_max - vertice_min))) && (!busca_vertice(valor,lista_elite))){
 
 				lista_elite.push_back(grafo[i][j]);
 

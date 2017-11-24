@@ -1,4 +1,7 @@
 #include <iostream>
+#include <stdio.h>      
+#include <stdlib.h>     
+#include <time.h> 
 
 using namespace std;
 
@@ -16,6 +19,7 @@ void local_search(vector<vector<vertice>> solucoes, vector<vertice> melhor_solc)
 
 	int valor_atual = 0;
 	int local_atual;
+	int s = 0;
 
 	for (int i = 0; i < solucoes.size(); ++i)
 	{
@@ -38,5 +42,25 @@ void local_search(vector<vector<vertice>> solucoes, vector<vertice> melhor_solc)
 	for (int i = 0; i < solucoes[local_atual].size(); ++i)
 	{
 		melhor_solc.push_back(solucoes[local_atual][i]);
+	}
+
+	srand (time(NULL));
+	int escolha = rand()%(solucoes.size()-1);
+
+	while(s=0){
+
+		if (valor_funcao[escolha] < valor_funcao[valor_funcao.size()-1]){
+
+			for (int i = 0; i < melhor_solc.size(); ++i)
+			{
+				melhor_solc[i] = solucoes[solucoes.size()][i];
+			}
+
+			s = 0;
+		}else{
+			s = 1;
+		}
+
+		escolha = rand()%(solucoes.size()-1);
 	}
 }
