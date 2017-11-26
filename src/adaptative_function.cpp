@@ -2,19 +2,13 @@
 
 using namespace std;
 
-struct vertice {
 
-	int vert;
-	int &graus;
-
-}
-
-void adaptative_function(vector<vertice> vector<vector<vertice>> grafo, vertice entrada, vector<vertice> lista_ordenada, vector<vertice> &lista_elite){
+void adaptative_function(vector<vertice> grafo, vertice entrada){
 
 	for (int i = 0; i < grafo.size(); ++i)
 	{
-		grafo[vertice.vert][i].graus--;
-		grafo[i][vertice.vert].graus--;
+		grafo[entrada.vert].graus--;
+		grafo[i].lista_adj[entrada.vert].graus--;
 	}
 
 }

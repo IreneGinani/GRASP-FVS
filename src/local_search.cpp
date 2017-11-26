@@ -5,12 +5,6 @@
 
 using namespace std;
 
-struct vertice {
-
-	int vert;
-	int &graus;
-
-}
 
 void local_search(vector<vector<vertice>> solucoes, vector<vertice> melhor_solc){
 
