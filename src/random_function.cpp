@@ -6,18 +6,32 @@
 
 using namespace std;
 
+int numeroAleatorio( int maior) {
+       return rand()%maior;
+}
 
-void random_function(vector<vertice> lista_elite, vector<vector<vertice>> &lista_solucao, vertice &v){
+void random_function(vector<vertice> lista_elite, vector<vertice> &lista_solucao, vertice &v){
 
-	srand (time(NULL));
-	int escolha = rand()%(lista_elite.size()-1);
+	
+		int escolha = numeroAleatorio(lista_elite.size());
 
-	vector <vertice> listas_solucao;
 
-	v.vert = escolha;
+		v.vert = lista_elite[escolha].vert;
+		v.graus = lista_elite[escolha].graus;
 
-	if (!busca_vertice(v,listas_solucao))
-		lista_solucao.push_back(listas_solucao);
+		
+		if (!busca_vertice(v,lista_solucao) && (v.graus > 0)){
+			//cout << v.vert << endl;
+			lista_solucao.push_back(v);
+			//cout << lista_elite[escolha].vert << endl;
+		}
+
+		
+
+
+	  
+
+	
 
 
 }

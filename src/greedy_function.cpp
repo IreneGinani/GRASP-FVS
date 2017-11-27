@@ -12,11 +12,11 @@ struct vertice {
 
 };
 
-bool busca_vertice(vertice v, vector<vertice> lista_ordenada){
+bool busca_vertice(vertice v, vector<vertice> lista){
 
-	for (int i = 0; i < lista_ordenada.size(); ++i)
+	for (int i = 0; i < lista.size(); ++i)
 	{
-		if ((v.vert == lista_ordenada[i].vert)){
+		if ((v.vert == lista[i].vert)){
 			return true;
 		}
 	}
@@ -71,7 +71,7 @@ void greedy_function(vector<vertice> grafo, vector<vertice> &lista_ordenada, vec
 	{
 		for (int j = 0; j < grafo[i].lista_adj.size(); ++j)
 		{
-			if ((grafo[i].graus >= (vertice_min.graus + alfa * (vertice_max.graus - vertice_min.graus))) && (!busca_vertice(grafo[i],lista_elite))){
+			if ((grafo[i].graus >= (vertice_min.graus + alfa * (vertice_max.graus - vertice_min.graus))) && (!busca_vertice(grafo[i],lista_elite)) && (grafo[i].graus > 0)){
 
 				lista_elite.push_back(grafo[i]);
 
@@ -79,8 +79,8 @@ void greedy_function(vector<vertice> grafo, vector<vertice> &lista_ordenada, vec
 		}
 	}
 
-	// std::cout << vertice_max.vert << endl;
-	// std::cout << vertice_min.vert << endl;
+	//  std::cout << vertice_max.vert << endl;
+	//  std::cout << vertice_min.vert << endl;
 
 
 	// for (int i = 0; i < lista_elite.size(); ++i)
