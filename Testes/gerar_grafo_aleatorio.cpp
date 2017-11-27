@@ -19,86 +19,34 @@
 using namespace std;
 
 
-void lerArquivo(std::string arq, vector<vertice> &G){
-	
-	std::string line, token,posi, posj, peso;
-	int pi,pj;
-	double pes;
-	std::ifstream info(arq);
-	int counter = 0;
-	std::vector<vertice> linhas;
+void grafo_aleatorio(vector<vertice> &G){
 
-	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-  	std::default_random_engine generator (seed);
-	
-	for (int i =0; i < 200; i++){
 
-		vertice v;
-		v.vert = i;
-		v.graus = 0;
-
-		for (int j = 0; j <	 200; j++)
+		for (int i = 0; i < G.size(); ++i)
 		{
-			vertice w;
-		    w.graus = -1;
-			w.vert = -1;
-			
-			v.lista_adj.push_back(w);
-
-		}
-
-		G.push_back(v);
-
-
-	}
-
-	int aux = 0;
-
-	while(!info.eof()){
-
-		getline(info,line);
-        std::istringstream ss(line);
-        int counter = 1;
-        vertice v;
-        if (line != ""){
-	        while(getline(ss, token,' ')) {
-
-			
-
-	        	counter++;
-	        	
-	        	if(counter == 2)
-	        		posi = token;
-	        	else if (counter == 3)
-	        		posj = token;
-				else if(counter == 4)
-					continue;
-				else
-					break;	
-
-			}
-			
-			pi = atoi(posi.c_str());
-			pj = atoi(posj.c_str());
-
-			
-			G[pi].lista_adj[pj].vert = pj;
-			
-			G[pi].graus = G[pi].graus + 1;
-			G[pj].lista_adj[pi].vert = pi;
-			
-			G[pj].graus = G[pj].graus + 1;
-
-			for (int i = 0; i < G.size(); ++i)
+			for (int j = 0; j < G[i].lista_adj.size(); ++j)
 			{
-				G[i].lista_adj[pj].graus++;
-				G[i].lista_adj[pi].graus++;
+
+				if(( i%2 == 0) || (j%2 == 0)){
+
+		
+					G[i].lista_adj[j].vert = j;
+					
+					G[i].graus = G[i].graus + 1;
+					G[j].lista_adj[i].vert = i;
+					
+					G[j].graus = G[j].graus + 1;
+
+					for (int i = 0; i < G.size(); ++i)
+					{
+						G[i].lista_adj[j].graus++;
+						G[i].lista_adj[i].graus++;
+					}
+				}
+
 			}
-
-
-
 		}
-	}
+	
 }
 
 void print(vector<vertice> G){
@@ -227,11 +175,7 @@ bool tem_ciclo(vector<vertice> grafo,vector<vertice> listas_solucao){
 
 int main(int argc, char const *argv[])
 {
-	if (argc < 2) {
-        std::cerr << "Arquivo nao fornecido." << std::endl;
-        exit (1);
-    }
-    vector<vertice> G;
+	vector<vertice> G;
     vector<vertice> lista_ordenada;
     vector<vertice> lista_elite;
     vector<vertice> melhor_solc;
@@ -243,7 +187,7 @@ int main(int argc, char const *argv[])
     vertice w;
     w.graus = 100000;
     solucao.push_back(w);
-    lerArquivo(arquivo, G);
+    grafo_aleatorio(G);
     int c = 0;
     int c1 = 0;
 
@@ -307,11 +251,11 @@ int main(int argc, char const *argv[])
 
 	 std::cout<<nanosegundos_decorridos<<" ns" << endl;
 
-	cout << "tamanho do conjunto: " << solucao.size() -1 << endl;
+	cout << "tamanho do conjunto: " << solucao.size() -2 << endl;
 
 	cout << "Vertices na solução: " << endl;
 
-    for (int i = 1; i < solucao.size() ; ++i)
+    for (int i = 1; i < solucao.size() -1 ; ++i)
 	{
 	    cout << solucao[i].vert << endl;
    	}
