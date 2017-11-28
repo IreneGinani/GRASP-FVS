@@ -307,11 +307,11 @@ int main(int argc, char const *argv[])
 
 	 std::cout<<nanosegundos_decorridos<<" ns" << endl;
 
-	cout << "tamanho do conjunto: " << solucao.size() -1 << endl;
+	cout << "tamanho do conjunto: " << solucao.size() -3 << endl;
 
 	cout << "Vertices na solução: " << endl;
 
-    for (int i = 1; i < solucao.size() ; ++i)
+    for (int i = 1; i < solucao.size() -2; ++i)
 	{
 	    cout << solucao[i].vert << endl;
    	}
